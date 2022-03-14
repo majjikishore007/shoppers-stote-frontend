@@ -13,6 +13,7 @@ import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { authenticate, isAuthenticated, signin } from '../auth/helper';
 import Error from '../components/Error';
+import Spinner from '../components/Spinner';
 import Base from '../core/Base';
 
 const Signin = (props) => {
@@ -32,10 +33,11 @@ const Signin = (props) => {
   };
   const performRedirect = () => {
     if (didRedirect) {
+      console.log('role :::::', user.role);
       if (user && user.role === 1) {
-        return <Redirect to='/admin/dashboard' />;
+        return <Redirect to='/' />;
       } else {
-        return <Redirect to='/user/dashboard' />;
+        return <Redirect to='/' />;
       }
     }
     if (isAuthenticated()) {
@@ -60,15 +62,6 @@ const Signin = (props) => {
         }
       })
       .catch(console.log('signin request failed'));
-  };
-  const loadingMessage = () => {
-    return (
-      loading && (
-        <div className='alert alert-info'>
-          <h2>Loading... .. .</h2>
-        </div>
-      )
-    );
   };
 
   const signInForm = () => {
@@ -130,7 +123,6 @@ const Signin = (props) => {
 
   return (
     <Base title='signin page' description='signin here '>
-      {loadingMessage()}
       {error && <Error values={values} setValues={setValues}></Error>}
       {signInForm()}
       {performRedirect()}

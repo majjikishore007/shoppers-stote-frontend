@@ -24,6 +24,10 @@ const colors = {
     800: '#153e75',
     700: '#2a69ac',
   },
+  font: {
+    body: 'Open Sans, sans-serif',
+    heading: 'Raleway, sans-serif',
+  },
 };
 
 const theme = extendTheme({ colors });

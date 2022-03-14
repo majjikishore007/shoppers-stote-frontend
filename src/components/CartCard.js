@@ -50,9 +50,13 @@ const CartCard = (props) => {
           md: 'none',
         }}
       >
-        <Link fontSize='sm' textDecor='underline'>
-          Delete
-        </Link>
+        <CloseButton
+          aria-label={`Delete ${name} from cart`}
+          onClick={() => {
+            removeItemFromCart(product._id);
+            setreload(!reload);
+          }}
+        />
         <PriceTag price={price} />
       </Flex>
     </Flex>
