@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { ProductCard } from '../components/ProductCard.js';
 import Base from './Base.js';
-import Card from './Card';
 import { loadCart } from './helper/Carthelper';
 import PaymentB from './paymentBraintree';
 import StripeCheckout from './StripeCheckout';
@@ -16,7 +16,7 @@ const Cart = () => {
       <div>
         {products.map((product, index) => {
           return (
-            <Card
+            <ProductCard
               key={index}
               product={product}
               addtoCart={false}

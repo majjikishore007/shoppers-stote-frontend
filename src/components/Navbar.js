@@ -22,7 +22,6 @@ import NavLink from './NavLink';
 const Navbar = ({ props, history }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
-
   let mainLinks = null;
   if (isAuthenticated() && isAuthenticated().user.role === 1) {
     mainLinks = (
@@ -71,12 +70,12 @@ const Navbar = ({ props, history }) => {
                 mr={4}
                 fontSize={18}
               >
-                Signin
+                {isAuthenticated() ? isAuthenticated().user.name : 'Signin'}
               </MenuButton>
               <MenuList textDecoration={'none'}>
                 {!isAuthenticated() && (
                   <>
-                    <MenuItem textDecoration={'none'}>
+                    <MenuItem textDecoration={'none'} textAlign='center'>
                       <NavLink url={'/signup'}>Register</NavLink>
                     </MenuItem>
                     <MenuItem>

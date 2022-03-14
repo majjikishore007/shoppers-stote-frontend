@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { cartEmpty, loadCart } from './helper/Carthelper';
-import { getMeToken, processPayment } from './helper/paymentsBhelper';
-import { createOrder } from './helper/OrderHelper';
-import { isAuthenticated } from '../auth/helper/index';
 import Dropin from 'braintree-web-drop-in-react';
+import React, { useEffect, useState } from 'react';
+import { isAuthenticated } from '../auth/helper/index';
+import { cartEmpty } from './helper/Carthelper';
+import { createOrder } from './helper/OrderHelper';
+import { getMeToken, processPayment } from './helper/paymentsBhelper';
 
 const PaymentB = ({ products, setreload = (f) => f, reload = undefined }) => {
   const [info, setinfo] = useState({
@@ -83,7 +82,7 @@ const PaymentB = ({ products, setreload = (f) => f, reload = undefined }) => {
             <button onClick={onPurchase}>Buy</button>
           </div>
         ) : (
-          <div className="alert alert-danger mt-3">
+          <div className='alert alert-danger mt-3'>
             <h4> carty is empty </h4>
           </div>
         )}
@@ -93,7 +92,7 @@ const PaymentB = ({ products, setreload = (f) => f, reload = undefined }) => {
   const successMessage = () => {
     return (
       <div
-        className="alert alert-success mt-3"
+        className='alert alert-success mt-3'
         style={{ display: isSuccess ? '' : 'none' }}
       >
         <h4> purchage done successfully </h4>
@@ -106,7 +105,7 @@ const PaymentB = ({ products, setreload = (f) => f, reload = undefined }) => {
       {token ? (
         <h3>Total purchage Amount : {getAmount()}$</h3>
       ) : (
-        <div className="alert alert-danger mt-3">
+        <div className='alert alert-danger mt-3'>
           <h4> please signin </h4>
         </div>
       )}

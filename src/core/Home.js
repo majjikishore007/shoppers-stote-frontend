@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <Base title='ShoppersStop' description='The buyers shop'>
       <div className='row text-center '>
-        <Box m={'auto'} maxW={'90%'}>
+        <Box m={'auto'} py={'8'} maxW={'90%'}>
           <ProductGrid>
             {products.length > 0 &&
               products.map((product) => (
