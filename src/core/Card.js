@@ -11,7 +11,6 @@ const Card = ({
   reload = undefined,
 }) => {
   const [redirect, setredirect] = useState(false);
-  const [count, setcount] = useState(product.count);
   const cardTitle = product ? product.name : 'A photo from pexels';
   const cardDescription = product ? product.description : 'default';
   const cardPrice = product ? product.price : 'default';

@@ -12,6 +12,7 @@ import {
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { authenticate, isAuthenticated, signin } from '../auth/helper';
+import Error from '../components/Error';
 import Base from '../core/Base';
 
 const Signin = (props) => {
@@ -70,25 +71,14 @@ const Signin = (props) => {
     );
   };
 
-  const errorMessage = () => {
-    console.log('error message');
-    return (
-      <div className='row'>
-        <div className='col-md-6 offset-sm-3 text-left'>
-          <div
-            className='alert alert-danger'
-            style={{ display: error ? '' : 'none' }}
-          >
-            {error}
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   const signInForm = () => {
     return (
-      <Flex minH={'80vh'} align={'center'} textAlign={'center'} justify={'center'}>
+      <Flex
+        minH={'80vh'}
+        align={'center'}
+        textAlign={'center'}
+        justify={'center'}
+      >
         <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
           <Stack align={'center'}>
             <Heading fontSize={'4xl'}>Sign in to your account</Heading>
@@ -141,7 +131,7 @@ const Signin = (props) => {
   return (
     <Base title='signin page' description='signin here '>
       {loadingMessage()}
-      {errorMessage()}
+      {error && <Error values={values} setValues={setValues}></Error>}
       {signInForm()}
       {performRedirect()}
     </Base>

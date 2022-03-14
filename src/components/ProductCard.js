@@ -32,7 +32,6 @@ export const ProductCard = (props) => {
   const imageUrl = Imghelper(product);
 
   const [redirect, setredirect] = useState(false);
-  const [count, setcount] = useState(product.count);
   const additemToCart = () => {
     addItemToCart(product, () => setredirect(true));
   };
