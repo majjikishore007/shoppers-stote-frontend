@@ -1,9 +1,20 @@
+import {
+  Box,
+  Button,
+  Checkbox,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  Stack
+} from '@chakra-ui/react';
 import React, { useState } from 'react';
-import Base from '../core/Base';
 import { Link, Redirect } from 'react-router-dom';
-import { signin, authenticate, isAuthenticated } from '../auth/helper';
+import { authenticate, isAuthenticated, signin } from '../auth/helper';
+import Base from '../core/Base';
 
-const Signin = () => {
+const Signin = (props) => {
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -15,19 +26,19 @@ const Signin = () => {
   const { email, password, error, loading, didRedirect } = values;
   const { user } = isAuthenticated();
 
-  const handelChange = (name) => (event) => {
+  const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
   const performRedirect = () => {
     if (didRedirect) {
       if (user && user.role === 1) {
-        return <Redirect to="/admin/dashboard" />;
+        return <Redirect to='/admin/dashboard' />;
       } else {
-        return <Redirect to="/user/dashboard" />;
+        return <Redirect to='/user/dashboard' />;
       }
     }
     if (isAuthenticated()) {
-      return <Redirect to="/"></Redirect>;
+      return <Redirect to='/'></Redirect>;
     }
   };
 
@@ -52,7 +63,7 @@ const Signin = () => {
   const loadingMessage = () => {
     return (
       loading && (
-        <div className="alert alert-info">
+        <div className='alert alert-info'>
           <h2>Loading... .. .</h2>
         </div>
       )
@@ -62,10 +73,10 @@ const Signin = () => {
   const errorMessage = () => {
     console.log('error message');
     return (
-      <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
+      <div className='row'>
+        <div className='col-md-6 offset-sm-3 text-left'>
           <div
-            className="alert alert-danger"
+            className='alert alert-danger'
             style={{ display: error ? '' : 'none' }}
           >
             {error}
@@ -77,41 +88,58 @@ const Signin = () => {
 
   const signInForm = () => {
     return (
-      <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
-          <form>
-            <div className="from-group">
-              <label className="text-light">Email</label>
-              <input
-                onChange={handelChange('email')}
-                className="form-control"
-                type="email"
-                value={email}
-              />
-            </div>
-            <div className="from-group">
-              <label className="text-light">Password</label>
-              <input
-                onChange={handelChange('password')}
-                className="form-control"
-                type="password"
-                value={password}
-              />
-            </div>
-            <button
-              onClick={onSubmit}
-              className="btn btn-success btn-block form-control mt-3"
-            >
-              Sign In
-            </button>
-          </form>
-        </div>
-      </div>
+      <Flex minH={'80vh'} align={'center'} textAlign={'center'} justify={'center'}>
+        <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+          <Stack align={'center'}>
+            <Heading fontSize={'4xl'}>Sign in to your account</Heading>
+          </Stack>
+          <Box rounded={'lg'} boxShadow={'lg'} p={8}>
+            <Stack spacing={4}>
+              <FormControl id='email'>
+                <FormLabel>Email address</FormLabel>
+                <Input
+                  type='email'
+                  value={email}
+                  onChange={handleChange('email')}
+                />
+              </FormControl>
+              <FormControl id='password'>
+                <FormLabel>Password</FormLabel>
+                <Input
+                  type='password'
+                  value={password}
+                  onChange={handleChange('password')}
+                />
+              </FormControl>
+              <Stack spacing={10}>
+                <Stack
+                  direction={{ base: 'column', sm: 'row' }}
+                  align={'start'}
+                  justify={'space-between'}
+                >
+                  <Checkbox>Remember me</Checkbox>
+                  <Link color={'blue.400'}>Forgot password?</Link>
+                </Stack>
+                <Button
+                  bg={'blue.400'}
+                  color={'white'}
+                  onClick={onSubmit}
+                  _hover={{
+                    bg: 'blue.500',
+                  }}
+                >
+                  Sign in
+                </Button>
+              </Stack>
+            </Stack>
+          </Box>
+        </Stack>
+      </Flex>
     );
   };
 
   return (
-    <Base title="signin page" description="signin here ">
+    <Base title='signin page' description='signin here '>
       {loadingMessage()}
       {errorMessage()}
       {signInForm()}

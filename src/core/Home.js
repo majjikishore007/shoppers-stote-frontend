@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import '../styles.css';
-import Base from './Base.js';
-import Card from './Card';
-import { ProductGrid } from '../components/ProductGrid';
-import { ProductCard } from '../components/ProductCard';
-import { getAllProducts } from './helper/coreapicalls';
 import { Box } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import { ProductCard } from '../components/ProductCard';
+import { ProductGrid } from '../components/ProductGrid';
+import Base from './Base.js';
+import { getAllProducts } from './helper/coreapicalls';
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [error, seterror] = useState(false);

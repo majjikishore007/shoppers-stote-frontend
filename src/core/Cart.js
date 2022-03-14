@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import '../styles.css';
+import React, { useEffect, useState } from 'react';
 import Base from './Base.js';
 import Card from './Card';
 import { loadCart } from './helper/Carthelper';
-import StripeCheckout from './StripeCheckout';
 import PaymentB from './paymentBraintree';
+import StripeCheckout from './StripeCheckout';
 const Cart = () => {
   const [products, setproducts] = useState([]);
   const [reload, setreload] = useState(false);
@@ -44,16 +43,12 @@ const Cart = () => {
     );
   };
   return (
-    <Base title="Cart page" description="">
-      <div className="row text-center">
-        <div className="col-6">
-          {products.length > 0 ? (
-            loadAllProducts(products)
-          ) : (
-            <h3>Cart is Empty</h3>
-          )}
+    <Base title='Cart page' description=''>
+      <div className='row text-center'>
+        <div className='col-6'>
+          {products ? loadAllProducts(products) : <h3>Cart is Empty</h3>}
         </div>
-        <div className="col-6">
+        <div className='col-6'>
           <PaymentB products={products} setreload={setreload} reload={reload} />
         </div>
       </div>

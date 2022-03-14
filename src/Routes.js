@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ChakraProvider } from '@chakra-ui/react';
+import { extendTheme, ChakraProvider } from '@chakra-ui/react';
 
 import Home from './core/Home';
 import Signup from './user/Signup';
@@ -18,9 +18,18 @@ import Orders from './admin/Orders';
 import UpdateCategory from './admin/UpdateCategory';
 
 import Cart from './core/Cart';
+const colors = {
+  brand: {
+    900: '#1a365d',
+    800: '#153e75',
+    700: '#2a69ac',
+  },
+};
+
+const theme = extendTheme({ colors });
 const Routes = () => {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Router>
         <Switch>
           <Route path='/' exact component={Home} />
