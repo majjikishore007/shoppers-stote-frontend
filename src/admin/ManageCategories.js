@@ -12,9 +12,7 @@ const ManageCategories = () => {
   const removeCategory = (category) => {
     deleteCategory(category._id, user._id, token).then((data) => {
       if (data.error) {
-        console.log(data.error);
       } else {
-        console.log('REMOVED THE category');
         preLoad();
       }
     });
@@ -23,7 +21,6 @@ const ManageCategories = () => {
   const preLoad = () => {
     getCategories().then((data) => {
       if (data.error) {
-        console.log(data.error);
       } else {
         setCategories(data);
       }

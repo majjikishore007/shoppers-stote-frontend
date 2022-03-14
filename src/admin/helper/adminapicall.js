@@ -37,7 +37,6 @@ export const getCategories = () => {
     method: 'GET',
   })
     .then((response) => {
-      console.log('RESPONSE AT 28' + response);
       return response.json();
     })
     .catch((error) => {

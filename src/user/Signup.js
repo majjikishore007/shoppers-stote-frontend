@@ -31,12 +31,10 @@ const Signup = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log('on submit ruuning');
     setValues({ ...values, error: false });
     signup({ name, email, password })
       .then((data) => {
         if (data.error) {
-          console.log(data.error);
           setValues({ ...values, error: data.error, success: false });
         } else {
           setValues({
@@ -115,7 +113,6 @@ const Signup = () => {
   };
 
   const successMessage = () => {
-    console.log('sucess message');
     return (
       <div className='row'>
         <div className='col-md-6 offset-sm-3 text-left'>
@@ -132,7 +129,6 @@ const Signup = () => {
   };
 
   const errorMessage = () => {
-    console.log('error message');
     return (
       <div className='row'>
         <div className='col-md-6 offset-sm-3 text-left'>

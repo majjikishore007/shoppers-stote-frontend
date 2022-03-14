@@ -12,9 +12,7 @@ const ManageProducts = () => {
   const removeProduct = (product) => {
     deleteProduct(product._id, user._id, token).then((data) => {
       if (data.error) {
-        console.log(data.error);
       } else {
-        console.log('REMOVED THE PRODUCT');
         preLoad();
       }
     });
@@ -26,7 +24,6 @@ const ManageProducts = () => {
         console.log(data.error);
       } else {
         setProducts(data);
-        console.log('PRODUCTS : ' + products);
       }
     });
   };

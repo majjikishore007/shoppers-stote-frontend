@@ -5,6 +5,10 @@ import { CartOrderSummary } from '../components/OrderSummary.js';
 import Base from './Base.js';
 import { loadCart } from './helper/Carthelper';
 const Cart = () => {
+  const [values, setValues] = useState({
+    totalPrice: 0,
+    totalQuantity: 0,
+  });
   const [products, setproducts] = useState([]);
   const [reload, setreload] = useState(false);
   useEffect(() => {
@@ -51,7 +55,10 @@ const Cart = () => {
             flex='2'
           >
             <Heading fontSize='2xl' fontWeight='extrabold'>
-              Shopping Cart {products.length}
+              Your Shopping Cart{' '}
+              {products.length === 0
+                ? 'isEmpty'
+                : ` has ${products.length} items`}
             </Heading>
 
             <Stack spacing='6'>
@@ -60,6 +67,8 @@ const Cart = () => {
                   <CartCard
                     key={index}
                     product={product}
+                    values={values}
+                    setValues={setValues}
                     addtoCart={false}
                     removefromCart={true}
                     setreload={setreload}
@@ -71,14 +80,15 @@ const Cart = () => {
           </Stack>
 
           <Flex direction='column' align='center' flex='1'>
-            <CartOrderSummary
-              products={products}
-              setreload={setreload}
-              reload={reload}
-            />
-            <HStack mt='6' fontWeight='semibold'>
-              <p>or</p>
-            </HStack>
+            {products.length > 0 && (
+              <CartOrderSummary
+                products={products}
+                setreload={setreload}
+                reload={reload}
+                values={values}
+                setValues={setValues}
+              />
+            )}
           </Flex>
         </Stack>
       </Box>
@@ -87,13 +97,3 @@ const Cart = () => {
 };
 
 export default Cart;
-/**
- * <div className='row text-center'>
-        <div className='col-6'>
-          {products ? loadAllProducts(products) : <h3>Cart is Empty</h3>}
-        </div>
-        <div className='col-6'>
-          <PaymentB products={products} setreload={setreload} reload={reload} />
-        </div>
-      </div>
- */

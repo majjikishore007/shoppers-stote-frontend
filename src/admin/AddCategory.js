@@ -32,14 +32,12 @@ const AddCategory = () => {
   };
   const successMessage = () => {
     if (success) {
-      console.log('SUCCESS AT LINE 34');
-      return <h4 className="text-success">category success created</h4>;
+      return <h4 className='text-success'>category success created</h4>;
     }
   };
   const warningMessage = () => {
     if (error) {
-      console.log('FAILED AT LINE 40');
-      return <h4 className="text-success">Failed to create category</h4>;
+      return <h4 className='text-success'>Failed to create category</h4>;
     }
   };
   const myCategory = () => {

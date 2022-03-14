@@ -28,7 +28,6 @@ const StripeCheckout = ({
   };
   const makepayment = (token) => {
     //
-    console.log('MAKING PAYMENT');
     const body = {
       token,
       products,
@@ -45,7 +44,6 @@ const StripeCheckout = ({
         console.log('RESPONSE AT LINE 44', response);
         //calling other methods
         const { status } = response;
-        console.log('STATUS:', status);
         //emty the cart
       })
       .catch((err) => {
